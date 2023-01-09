@@ -4,4 +4,4 @@ helm:
   releaseName: onos-operator
   repo: https://charts.onosproject.org
   chart: onos-operator
-  version: latest
+  version: 0.5.6

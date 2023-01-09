@@ -4,6 +4,6 @@ helm:
   releaseName: sd-core-5g
   repo: https://charts.aetherproject.org
   chart: sd-core
-  version: latest
+  version: 0.12.5
   valuesFiles:
     - sd-core-5g-values.yaml

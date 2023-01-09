@@ -4,4 +4,4 @@ helm:
   releaseName: atomix
   repo: https://charts.atomix.io
   chart: atomix-runtime
-  version: latest
+  version: 0.1.9
