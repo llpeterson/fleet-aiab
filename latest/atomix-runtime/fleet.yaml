@@ -1,0 +1,7 @@
+name: atomix
+defaultNamespace: kube-system
+helm:
+  releaseName: atomix
+  repo: https://charts.atomix.io
+  chart: atomix-runtime
+  version: latest

@@ -1,0 +1,9 @@
+name: roc
+defaultNamespace: aether-roc
+helm:
+  releaseName: roc
+  repo: https://charts.aetherproject.org
+  chart: aether-roc-umbrella
+  version: latest
+  valuesFiles:
+    - roc-values.yaml
