@@ -7,3 +7,6 @@ helm:
   version: 2.1.32
   valuesFiles:
     - roc-values.yaml
+dependsOn:
+- name: atomix
+- name: onos-operator
