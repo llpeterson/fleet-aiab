@@ -33,3 +33,11 @@ To see the status of your install in Fleet:
 ```bash
 kubectl -n fleet-local get fleet
 ```
+
+After Fleet has successfully installed all the Aether components, to validate the setup
+run the following commands in the `aether-in-a-box` directory:
+
+```bash
+touch build/milestones/roc build/milestones/5g-core
+make roc-5g-models 5g-test
+```

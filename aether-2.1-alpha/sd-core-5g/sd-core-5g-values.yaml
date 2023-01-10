@@ -105,9 +105,9 @@ omec-sub-provision:
             provision-network-slice: false # if enabled then Network Slices configured from simapp
             sub-provision-endpt:
               addr: webui.omec.svc.cluster.local  # subscriber configuation endpoint.
-            sub-proxy-endpt:  #this is useful block if subscriber proxy is enabled in the ROC.
-              addr: subscriber-proxy.aether-roc.svc.cluster.local
-              port: 5000
+            # sub-proxy-endpt:  #this is useful block if subscriber proxy is enabled in the ROC.
+            #   addr: subscriber-proxy.aether-roc.svc.cluster.local
+            #   port: 5000
 
             # below block configures the subscribers and their security details.
             # you can have any number of subscriber ranges
