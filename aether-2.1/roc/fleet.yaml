@@ -1,7 +1,7 @@
-name: roc
+name: aether-roc-umbrella
 defaultNamespace: aether-roc
 helm:
-  releaseName: roc
+  releaseName: aether-roc-umbrella
   repo: https://charts.aetherproject.org
   chart: aether-roc-umbrella
   version: 2.1.32
