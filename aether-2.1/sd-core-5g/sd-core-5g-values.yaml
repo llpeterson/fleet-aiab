@@ -248,14 +248,14 @@ omec-user-plane:
       cniPlugin: macvlan
       ipam: static
       routes:
-        - to: ${NODE_IP}
+        - to: 128.105.145.197 # Replace me!
           via: 169.254.1.1
       enb:
-        subnet: ${RAN_SUBNET} #this is your gNB network
+        subnet: 192.168.251.0/24 #this is your gNB network
       access:
-        iface: ${DATA_IFACE}
+        iface: data
       core:
-        iface: ${DATA_IFACE}
+        iface: data
       cfgFiles:
         upf.json:
           mode: af_packet  #this mode means no dpdk
@@ -273,7 +273,7 @@ omec-user-plane:
 # 5g-ran-sim Helm Charts values - https://gerrit.opencord.org/sdcore-helm-charts/5g-ran-sim/values.yaml
 
 5g-ran-sim:
-  enable: ${ENABLE_GNBSIM}
+  enable: true
   resources:
     enabled: false
   images:
