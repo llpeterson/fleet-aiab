@@ -68,11 +68,20 @@ clustergroup.fleet.cattle.io/default   0/1 (local)      4/6             Modified
 ```
 
 After Fleet has successfully installed all the Aether components, to validate the setup
-run the following commands in the `aether-in-a-box` directory:
+run the following commands in the `aether-in-a-box` directory.
+
+For `aether-2.1-alpha` install:
 
 ```bash
 touch build/milestones/roc build/milestones/5g-core
 make roc-5g-models 5g-test
 ```
 
-The 5G test should succeed.
+For `aether-2.0` install:
+
+```bash
+touch build/milestones/roc build/milestones/5g-core
+CHARTS=release-2.0 make roc-5g-models 5g-test
+```
+
+In both cases the 5G test should succeed.
