@@ -1,0 +1,9 @@
+name: sd-core-5g
+defaultNamespace: omec
+helm:
+  releaseName: sd-core-5g
+  repo: https://charts.aetherproject.org
+  chart: sd-core
+  version: 0.10.20
+  valuesFiles:
+    - sd-core-5g-values.yaml

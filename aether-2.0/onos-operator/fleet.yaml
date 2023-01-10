@@ -1,0 +1,7 @@
+name: onos-operator
+defaultNamespace: kube-system
+helm:
+  releaseName: onos-operator
+  repo: https://charts.onosproject.org
+  chart: onos-operator
+  version: 0.5.1

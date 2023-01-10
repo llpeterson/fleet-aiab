@@ -1,0 +1,7 @@
+name: atomix-controller
+defaultNamespace: kube-system
+helm:
+  releaseName: atomix-controller
+  repo: https://charts.atomix.io
+  chart: atomix-controller
+  version: 0.6.9
