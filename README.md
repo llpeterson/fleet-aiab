@@ -1,6 +1,8 @@
 # Installing AiaB using Fleet
 
-This README describes the steps for installing AiaB for developers on a node using Fleet.
+This README describes the steps for installing [AiaB for developers](https://docs.aetherproject.org/master/developer/aiab.html#)
+on a node using Fleet. It is intended to serve as an example of how Fleet can be used to install
+and configure the Aether software stack.
 
 On GitHub, create a public fork of this repo and make the following changes:
 
@@ -26,7 +28,7 @@ or `2.1-alpha`, based on which version of Aether you wish to install):
 kubectl apply -f deploy-<version>.yaml
 ```
 
-To see the progress of your install:
+To see the status of your install in Fleet:
 
 ```bash
 kubectl -n fleet-local get fleet

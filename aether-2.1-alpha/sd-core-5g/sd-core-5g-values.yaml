@@ -37,7 +37,7 @@ omec-control-plane:
 
     managedByConfigPod:
       enabled: true
-      # syncUrl: http://sdcore-adapter-v2-1.aether-roc.svc:8080/synchronize
+      syncUrl: http://sdcore-adapter-v2-1.aether-roc.svc:8080/synchronize
 
     sctplb:
       deploy: false # if enabled then deploy sctp pod. Once backend code is stable,
@@ -102,12 +102,12 @@ omec-sub-provision:
       cfgFiles:
         simapp.yaml:
           configuration:
-            provision-network-slice: true # if enabled then Network Slices configured from simapp
+            provision-network-slice: false # if enabled then Network Slices configured from simapp
             sub-provision-endpt:
               addr: webui.omec.svc.cluster.local  # subscriber configuation endpoint.
-            # sub-proxy-endpt:  #this is useful block if subscriber proxy is enabled in the ROC.
-            #   addr: subscriber-proxy.aether-roc.svc.cluster.local
-            #   port: 5000
+            sub-proxy-endpt:  #this is useful block if subscriber proxy is enabled in the ROC.
+              addr: subscriber-proxy.aether-roc.svc.cluster.local
+              port: 5000
 
             # below block configures the subscribers and their security details.
             # you can have any number of subscriber ranges
