@@ -2,7 +2,7 @@
 
 This README describes the steps for installing AiaB for developers on a node using Fleet.
 
-On GitHub, create a public clone this repo and make the following changes:
+On GitHub, create a public fork of this repo and make the following changes:
 
 * Edit the `deploy-2.*.yaml` files and replace the `repo:` with the name of your cloned repo.
 
@@ -10,15 +10,16 @@ On GitHub, create a public clone this repo and make the following changes:
   and replace the IP address `128.105.145.197` with the IP address of the node where you will
   install AiaB.
 
-On your AiaB node, check out the `aether-in-a-box` repo and run:
+On your AiaB node, clone the `aether-in-a-box` repo and install the dependencies:
 
 ```bash
-make node-prep
-make router-pod
+git clone "https://gerrit.opencord.org/aether-in-a-box"
+cd aether-in-a-box
+make node-prep router-pod
 ```
 
-Next, check out your clone of this repo and run the following (where `<version>` is either 2.0
-or 2.1-alpha):
+Next, clone your fork of this repo and run the following (where `<version>` is either `2.0`
+or `2.1-alpha`, based on which version of Aether you wish to install):
 
 ```bash
 ./install-fleet.sh
@@ -30,4 +31,3 @@ To see the progress of your install:
 ```bash
 kubectl -n fleet-local get fleet
 ```
-
