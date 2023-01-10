@@ -3,5 +3,5 @@ defaultNamespace: kube-system
 helm:
   releaseName: atomix-raft-storage
   repo: https://charts.atomix.io
-  chart: atomix-runtime
+  chart: atomix-raft-storage
   version: 0.1.25
