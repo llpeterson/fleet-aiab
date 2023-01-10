@@ -4,13 +4,10 @@ This README describes the steps for installing [AiaB for developers](https://doc
 on a node using Fleet. It is intended to serve as an example of how Fleet can be used to install
 and configure the Aether software stack.
 
-On GitHub, create a public fork of this repo and make the following changes:
-
-* Edit the `deploy-2.*.yaml` files and replace the `repo:` with the name of your cloned repo.
-
-* In each of the `aether-2.*` directories, edit the file `sd-core-5g/sd-core-5g-values.yaml`
-  and replace the IP address `128.105.145.197` with the IP address of the node where you will
-  install AiaB.
+On GitHub, first create a public fork of this repo. The reason for this step is that Fleet is a
+GitOps-based tool: you will point Fleet at your forked repo and your installation will be driven
+from the contents of your repo. If you make changes to your repo then they will be automatically
+reflected on your AiaB node.
 
 On your AiaB node, clone the `aether-in-a-box` repo and install the dependencies:
 
@@ -20,12 +17,34 @@ cd aether-in-a-box
 make node-prep router-pod
 ```
 
-Next, clone your fork of this repo and run the following (where `<version>` is either `2.0`
-or `2.1-alpha`, based on which version of Aether you wish to install):
+Next, install Fleet on your AiaB node:
 
 ```bash
-./install-fleet.sh
-kubectl apply -f deploy-<version>.yaml
+helm -n cattle-fleet-system install --create-namespace --wait \
+    fleet-crd https://github.com/rancher/fleet/releases/download/v0.5.0/fleet-crd-0.5.0.tgz
+helm -n cattle-fleet-system install --create-namespace --wait \
+    fleet https://github.com/rancher/fleet/releases/download/v0.5.0/fleet-0.5.0.tgz
+```
+
+To install one of the Aether versions (`aether-2.0` or `aether-2.1-alpha`), add the
+appropriate `GitRepo` resource. Below, replace the `repo:` line with the name of your
+own repo:
+
+```bash
+cat > deploy.yaml << EOF
+apiVersion: fleet.cattle.io/v1alpha1
+kind: GitRepo
+metadata:
+  name: aiab
+  namespace: fleet-local
+spec:
+  repo: "https://github.com/andybavier/fleet-aiab"  # Replace with your fork
+  branch: main
+  paths:
+  - aether-2.0   # Specify one of "aether-2.0" or "aether-2.1-alpha"
+EOF
+
+kubectl apply -f deploy.yaml
 ```
 
 To see the status of your install in Fleet:

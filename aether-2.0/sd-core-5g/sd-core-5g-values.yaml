@@ -142,9 +142,9 @@ omec-user-plane:
         enabled: false
       cniPlugin: macvlan
       ipam: static
-      routes:
-        - to: 128.105.145.197 # Replace me!
-          via: 169.254.1.1
+      # routes:
+      #   - to: 128.105.145.197
+      #     via: 169.254.1.1
       enb:
         subnet: 192.168.251.0/24
       access:
