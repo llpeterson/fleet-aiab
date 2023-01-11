@@ -47,24 +47,27 @@ EOF
 kubectl apply -f deploy.yaml
 ```
 
-To see the status of your install in Fleet:
+To track the progress of your install in Fleet:
 
 ```bash
-kubectl -n fleet-local get fleet
+kubectl -n fleet-local get bundles
 ```
 
 The install is successful when all pods in the `aether-roc` and `omec` namespaces have status `Running`.
-(Note that, with the `2.1-alpha` install, the `metricfunc` pod remains in `CrashLoopBackoff` state;
-this needs to be investigated.)  Even after a successful install, it is likely that you'll see some errors
-in Fleet.  For example, after installing `2.1-alpha` you will likely see something like:
+(Note that, with the `aether-2.1-alpha` install, the `metricfunc` pod remains in `CrashLoopBackoff` state;
+this needs to be investigated.)  Even after a successful install, it is likely that not all of the bundles
+will show as Ready in Fleet.  For example, after installing `aether-2.0` you will likely see something like:
 
 ```
-$ kubectl -n fleet-local get fleet
-NAME                           REPO                                       COMMIT                                     BUNDLEDEPLOYMENTS-READY   STATUS
-gitrepo.fleet.cattle.io/aiab   https://github.com/andybavier/fleet-aiab   2367ed4fa43f0c82929d548f8628565db3b126ac   3/5                       Modified(1) [Bundle aether-roc-umbrella]; NotReady(1) [Bundle sd-core-5g]; configmap.v1 aether-roc/onos-consensus-store extra; deployment.apps omec/metricfunc [progressing] Deployment does not have minimum availability., Available: 0/1; kind.topo.onosproject.org aether-roc/aether modified {"spec":{"aspects":{}}}; kind.topo.onosproject.org aether-roc/enterprise modified {"spec":{"aspects":{}}}; service.v1 aether-roc/onos-consensus-store extra
-
-NAME                                   CLUSTERS-READY   BUNDLES-READY   STATUS
-clustergroup.fleet.cattle.io/default   0/1 (local)      4/6             Modified(1) [Bundle aether-roc-umbrella]; NotReady(1) [Bundle sd-core-5g]; configmap.v1 aether-roc/onos-consensus-store extra; deployment.apps omec/metricfunc [progressing] Deployment does not have minimum availability., Available: 0/1; kind.topo.onosproject.org aether-roc/aether modified {"spec":{"aspects":{}}}; kind.topo.onosproject.org aether-roc/enterprise modified {"spec":{"aspects":{}}}; service.v1 aether-roc/onos-consensus-store extra
+$ kubectl -n fleet-local get bundles
+NAME                       BUNDLEDEPLOYMENTS-READY   STATUS
+aether-roc-umbrella        0/1                       Modified(1) [Cluster fleet-local/local]; kind.topo.onosproject.org aether-roc/aether modified {"spec":{"aspects":{}}}; kind.topo.onosproject.org aether-roc/plproxy modified {"spec":{"aspects":{}}}
+aiab-aether-2-0-4e093411   1/1
+atomix-controller          1/1
+atomix-raft-storage        1/1
+fleet-agent-local          1/1
+onos-operator              1/1
+sd-core-5g                 1/1
 ```
 
 After Fleet has successfully installed all the Aether components, to validate the setup
